@@ -44,7 +44,6 @@ nav ul li a{
     color: white;
 }
 
-
 .main-catalog {
     display: flex;
     margin: 0 10%;
@@ -52,10 +51,11 @@ nav ul li a{
 }
 
 .filter {
-    background-color: bisque;
+    background-color: #f9f9f9;
     width: 13%;
     padding: 15px;
     box-sizing: border-box;
+    max-height: 450px;
 }
 
 .items {
@@ -91,7 +91,7 @@ nav ul li a{
 }
 
 .card-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Эффект при наведении */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
 }
 
 .card-image {
@@ -152,4 +152,22 @@ h2 {
 
 .fa-cart-shopping{
     color: white;
+}
+
+.category-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    display: flex;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.active {
+    background-color: rgb(20, 20, 20);
+    color: white;
+}
+
+.category-btn:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)
 }
