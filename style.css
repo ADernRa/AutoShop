@@ -142,3 +142,14 @@ nav ul li a{
 h2 {
     margin: 15px 0px;
 }
+
+.logo h1 {
+    color: white;
+    margin: 0;
+    display: block;
+    padding: 6px;
+}
+
+.fa-cart-shopping{
+    color: white;
+}
