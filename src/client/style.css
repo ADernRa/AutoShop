@@ -206,7 +206,7 @@ h2 {
     padding: 4px;
 }
 
-.search-actions{
+.search-promotions{
     width: 100%;
     display: flex;
     gap: 4px;
@@ -215,7 +215,7 @@ h2 {
     margin-left: 0px;
 }
 
-.search-actions input{
+.search-promotions input{
     transform: scale(2);
     margin-left: 10px;
 }
