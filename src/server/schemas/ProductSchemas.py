@@ -18,9 +18,10 @@ class ProductUpdate(BaseModel):
     promotion: bool | None = Field(default=None)
 
 class ProductSearch(BaseModel):
-    price: int | None = Field(default=None, ge=0)
-    category: str | None = Field(default="all", max_length=100)
-    promotion: bool | None = Field(default=None)
+    min_price: int  = Field(default=0, ge=0)
+    max_price: int  = Field(default=99999, ge=0)
+    category: str  = Field(default="all", max_length=100)
+    promotion: bool  = Field(default=False)
 
 class ProductRespon(ProductBase):
     id: int
