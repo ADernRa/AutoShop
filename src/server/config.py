@@ -1,11 +1,13 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Setting(BaseSettings):
-    DATABASE_URL = ""
-    PROJECT_NAME = "AutoShop"
+    DATABASE_URL: str
+    PROJECT_NAME: str = "AutoShop"
+    DEBUG: bool
 
     model_config = SettingsConfigDict(
-        
+        env_file=".env",
+        env_file_encoding="utf-8",
     )
 
-setting = Setting()
+settings = Setting()
