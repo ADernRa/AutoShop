@@ -1,14 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from config import setting
+from src.server.routers.ProductRouter import api_router
+from src.server.config import settings
 
 app = FastAPI(
-    title = setting.PROJECT_NAME,
+    title = settings.PROJECT_NAME,
     version="1.0.0"
 )
 
-app.middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
@@ -16,3 +17,4 @@ app.middleware(
     allow_headers=["*"]
 )
 
+app.include_router(api_router)
