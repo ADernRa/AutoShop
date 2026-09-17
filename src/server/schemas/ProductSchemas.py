@@ -6,6 +6,7 @@ class ProductBase(BaseModel):
     title: str = Field(..., max_length=100)
     category: str = Field(..., max_length=100)
     promotion: bool = Field(default=False)
+    img_url: str = Field(...)
 
 class ProductCreate(ProductBase):
     pass
@@ -16,6 +17,7 @@ class ProductUpdate(BaseModel):
     title: str | None = Field(default=None, max_length=100)
     category: str | None = Field(default=None, max_length=100)
     promotion: bool | None = Field(default=None)
+    img_url: str | None = Field(default=None)
 
 class ProductSearch(BaseModel):
     min_price: int  = Field(default=0, ge=0)

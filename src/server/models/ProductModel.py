@@ -12,3 +12,4 @@ class Product(BaseModel.Base):
     title: Mapped[str] = mapped_column(String(100), nullable=False)
     category: Mapped[str] = mapped_column(String(100), nullable=False)
     promotion: Mapped[bool] = mapped_column(Boolean, default=False)
+    img_url: Mapped[str] = mapped_column(String, nullable=False)
