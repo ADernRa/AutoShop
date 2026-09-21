@@ -76,3 +76,33 @@ min_cost.addEventListener('change', () =>
 max_cost.addEventListener('change', () =>
     get_product()
 )
+
+const cartLink = document.querySelector('.cart-link');
+const cartSidebar = document.querySelector('.cart-sidebar');
+const cartOverlay = document.querySelector('.cart-overlay');
+const closeBtn = document.querySelector('.close-btn');
+
+function openCart(e) {
+    e.preventDefault(); 
+    cartSidebar.classList.add('open');
+    cartOverlay.classList.add('show');
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeCart() {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('show');
+    document.body.style.overflow = ''; 
+}
+
+if (cartLink) {
+    cartLink.addEventListener('click', openCart);
+}
+    
+if (closeBtn) {
+    closeBtn.addEventListener('click', closeCart);
+}
+
+if (cartOverlay) {
+     cartOverlay.addEventListener('click', closeCart);
+}
