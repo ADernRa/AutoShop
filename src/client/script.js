@@ -1,3 +1,5 @@
+var card_buttons = document.querySelectorAll('.card-button');;
+
 function get_product(){
     var category = document.querySelector('.active-category').dataset.category
     var min_cost = document.getElementById('min-cost').value
@@ -34,15 +36,20 @@ function get_product(){
             <div class="card-item" data-id="${data[i].id}">
                 <img src="${data[i].image}" alt="Товар" class="card-image">
                 <h3 class="card-title">${data[i].title}</h3>
-                <div class="card-price">${data[i].price} ₽</div>
-                <button class="card-button">В корзину</button>
+                <div class="card-price">${data[i].price} грн.</div>
+                <button class="card-button">До кошику</button>
             </div>
         `;
-
+            
             container.innerHTML += cardHTML;
+            card_buttons = document.querySelectorAll('.card-button');
         }
     })
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    get_product(); 
+});
 
 const buttons = document.querySelectorAll('.category-btn');
 buttons.forEach((button) => {
@@ -60,11 +67,57 @@ buttons.forEach((button) => {
     
 });
 
+const itemsContainer = document.querySelector('.items'); 
+const cart_content = document.querySelector('.cart-content');
+
+itemsContainer.addEventListener('click', (event) => {
+    if (event.target.classList.contains('card-button')) {
+        if(cart_content.textContent.includes('Ваш кошик порожній.')){
+            cart_content.innerHTML = '';
+        }
+        
+        const card = event.target.closest('.card-item');
+
+        const productData = {
+            id: card.dataset.id,                                       
+            img: card.querySelector('.card-image').getAttribute('src'), 
+            title: card.querySelector('.card-title').textContent.trim(),   
+            price: card.querySelector('.card-price').textContent.trim()   
+        };
+
+        const cardHTML = `
+            <div class="cart-product" data-id="${productData.id}">
+                    <div>
+                        <img src="${productData.img}" alt="Товар">
+                    </div>
+                    <div class="product_info">
+                        <h3>${productData.title}</h3>
+                        <div class="product_price">${productData.price}</div>
+                        <button class="back-button">Видалити</button>
+                    </div>
+                </div>
+        `;
+        
+        cart_content.innerHTML += cardHTML
+    }});
+
 const checkbox = document.getElementById('promotions')
 checkbox.addEventListener('change', () =>
     get_product()
 )
 
+cart_content.addEventListener('click', (event) => {
+    if (event.target.classList.contains('back-button')) {
+        const cartProduct = event.target.closest('.cart-product');
+        if (cartProduct) {
+            cartProduct.remove(); 
+        }
+        
+        if (cart_content.children.length === 0) {
+            cart_content.innerHTML = '<p>Ваш кошик порожній.</p>';
+        }
+    }
+});
 
 const min_cost = document.getElementById('min-cost')
 const max_cost = document.getElementById('max-cost')
