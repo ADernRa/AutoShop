@@ -17,8 +17,7 @@
             <div class="info">
                 <ul>
                     <li class="active-info"><a href="#">Товари</a></li>
-                    <li><a href="#">Кабінет</a></li>
-                    <li><a href="#">Контакти</a></li>
+                    <li><a href="#" class="user-link"><i class="fa-solid fa-user"></i></a></li>
                     <li><a href="#" class="cart-link"><i class="fa-solid fa-basket-shopping"></i></a></li>
                 </ul>
             </div>
@@ -28,6 +27,34 @@
     <main>
         <div class="cart-overlay"></div>
 
+        <div class="cart-login">
+            <div class="title-login">
+                <h2>Вхід до акаунту</h2>
+                <button class="close-btn-login">&times;</button>
+            </div>
+            <div class ="input-login">
+                <div class="login-conteiner">
+                    <i class="fa-solid fa-user login-icon"></i>
+                    <div class="login-input">
+                        <label>Логін</label>
+                        <input class="login" type="text">
+                    </div>
+                </div>
+                <div class="login-conteiner">
+                    <i class="fa-solid fa-lock login-icon"></i>
+                    <div class="login-input">
+                        <label>Пароль</label>
+                        <input class="password" type="password">
+                    </div>
+                    <button class="eye close"><i class="fa-solid fa-eye-slash close-eye"></i><i class="fa-solid fa-eye open-eye"></i></button>
+                </div>
+            </div>
+            <div class ="login-button">
+                <button class="login-but">Увійти </button>
+                <button class="register-but">Реєстрація</button>
+            </div>
+        </div>
+        
         <div id="cart-sidebar" class="cart-sidebar">
             <div class="cart-header">
                 <h2>Кошик</h2>
