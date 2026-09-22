@@ -5,17 +5,17 @@ from sqlalchemy import select, and_
 
 from src.server.models.ProductModel import Product
 from src.server.database import get_db
-
-api_router = APIRouter(
-    prefix="/api/search",
-    tags=["search"]
-)
-
 from src.server.schemas.ProductSchemas import (
     ProductCreate,
     ProductUpdate,
     ProductSearch,
     ProductRespon
+)
+from src.server.crud.product_repository import ProductRepository
+
+api_router = APIRouter(
+    prefix="/api/search",
+    tags=["search"]
 )
 
 # Пошук товарів
@@ -23,20 +23,7 @@ from src.server.schemas.ProductSchemas import (
 async def get_products(
     data_search: ProductSearch,
     db: AsyncSession = Depends(get_db)):
-    if data_search.category == "all":
-        query = select(Product).where(
-                and_(Product.price >= data_search.min_price, Product.price <= data_search.max_price),
-                Product.promotion == data_search.promotion
-            )
-    else:
-        query = select(Product).where(
-            Product.category == data_search.category,
-            and_(Product.price >= data_search.min_price, Product.price <= data_search.max_price),
-            Product.promotion == data_search.promotion
-        )
-
-    result = await db.execute(query)
-    products = result.scalars().all()
-    print(products)
+    repository = ProductRepository(db)
+    products = await repository.search_products(data_search)
     return products
 
