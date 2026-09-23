@@ -13,13 +13,13 @@ from src.server.schemas.ProductSchemas import (
 )
 from src.server.crud.product_repository import ProductRepository
 
-api_router = APIRouter(
+product_router = APIRouter(
     prefix="/api/search",
     tags=["search"]
 )
 
 # Пошук товарів
-@api_router.post("/products", response_model=List[ProductRespon])
+@product_router.post("/products", response_model=List[ProductRespon])
 async def get_products(
     data_search: ProductSearch,
     db: AsyncSession = Depends(get_db)):

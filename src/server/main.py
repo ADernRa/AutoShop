@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.server.routers.ProductRouter import api_router
+from src.server.routers.AuthRouter import auth_router
+from src.server.routers.ProductRouter import product_router
 from src.server.config import settings
 
 app = FastAPI(
@@ -17,4 +18,5 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-app.include_router(api_router)
+app.include_router(product_router)
+app.include_router(auth_router)
