@@ -25,9 +25,14 @@ if (closeBtn) {
     closeBtn.addEventListener('click', closeCart);
 }
 
-const cart_login = document.querySelector('.cart-login')
-const close_btn_login = document.querySelector('.close-btn-login')
-const open_btn_login = document.querySelector('.user-link')
+const cart_login = document.querySelector('.cart-login');
+const close_btn_login = document.querySelector('.close-btn-login');
+const open_btn_login = document.querySelector('.user-link');
+
+const close_btn_register = document.querySelector('.close-btn-register');
+const open_btn_register = document.querySelector('.register-but');
+const reg_win = document.querySelector('.register-window');
+const log_win = document.querySelector('.login-window');
 
 function closeLogin(){
     cart_login.classList.remove('open');
@@ -42,6 +47,16 @@ function openLogin(e){
     document.body.style.overflow = ''; 
 }
 
+function openRegister(){
+    reg_win.style.display = 'block';
+    log_win.style.display = 'none'
+}
+
+function closeRegister(){
+    reg_win.style.display = 'none';
+    log_win.style.display = 'block'
+}
+
 if (close_btn_login){
     close_btn_login.addEventListener('click', closeLogin);
 }
@@ -50,12 +65,21 @@ if (open_btn_login){
     open_btn_login.addEventListener('click', openLogin);
 }
 
+if (open_btn_register){
+    open_btn_register.addEventListener('click', openRegister);
+}
+
+if (close_btn_register){
+    close_btn_register.addEventListener('click', closeRegister);
+}
+
 function closeOverlay() {
     if(cartSidebar.classList.contains('open')){
         closeCart();
     }
     if(cart_login.classList.contains('open')){
         closeLogin()
+        closeRegister()
     }
 }
 

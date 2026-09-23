@@ -16,7 +16,7 @@
             </div>
             <div class="info">
                 <ul>
-                    <li class="active-info"><a href="#">Товари</a></li>
+                    <li><a href="#">Каталог</a></li>
                     <li><a href="#" class="user-link"><i class="fa-solid fa-user"></i></a></li>
                     <li><a href="#" class="cart-link"><i class="fa-solid fa-basket-shopping"></i></a></li>
                 </ul>
@@ -28,30 +28,65 @@
         <div class="cart-overlay"></div>
 
         <div class="cart-login">
-            <div class="title-login">
-                <h2>Вхід до акаунту</h2>
-                <button class="close-btn-login">&times;</button>
-            </div>
-            <div class ="input-login">
-                <div class="login-conteiner">
-                    <i class="fa-solid fa-user login-icon"></i>
-                    <div class="login-input">
-                        <label>Логін</label>
-                        <input class="login" type="text">
+            <div class="login-window">
+                <div class="title-login">
+                    <h2>Вхід до акаунту</h2>
+                    <button class="close-btn-login">&times;</button>
+                </div>
+                <div class ="input-login">
+                    <div class="login-conteiner">
+                        <i class="fa-solid fa-user login-icon"></i>
+                        <div class="login-input">
+                            <label>Логін</label>
+                            <input class="login" type="text">
+                        </div>
+                    </div>
+                    <div class="login-conteiner">
+                        <i class="fa-solid fa-lock login-icon"></i>
+                        <div class="login-input">
+                            <label>Пароль</label>
+                            <input class="password" type="password">
+                        </div>
+                        <button class="eye close"><i class="fa-solid fa-eye-slash close-eye"></i><i class="fa-solid fa-eye open-eye"></i></button>
                     </div>
                 </div>
-                <div class="login-conteiner">
-                    <i class="fa-solid fa-lock login-icon"></i>
-                    <div class="login-input">
-                        <label>Пароль</label>
-                        <input class="password" type="password">
-                    </div>
-                    <button class="eye close"><i class="fa-solid fa-eye-slash close-eye"></i><i class="fa-solid fa-eye open-eye"></i></button>
+                <div class ="login-button">
+                    <button class="login-but">Увійти </button>
+                    <button class="register-but">Реєстрація</button>
                 </div>
             </div>
-            <div class ="login-button">
-                <button class="login-but">Увійти </button>
-                <button class="register-but">Реєстрація</button>
+
+            <div class="register-window">
+                <div class="title-login">
+                    <h2>Реєстрація</h2>
+                    <button class="close-btn-register">&times;</button>
+                </div>
+                <div class ="input-login">
+                    <div class="login-conteiner">
+                        <i class="fa-solid fa-user login-icon"></i>
+                        <div class="login-input">
+                            <label>Логін</label>
+                            <input class="new-login" type="text">
+                        </div>
+                    </div>
+                    <div class="login-conteiner">
+                        <i class="fa-solid fa-lock login-icon"></i>
+                        <div class="login-input">
+                            <label>Пароль</label>
+                            <input class="new-password" type="password">
+                        </div>
+                    </div>
+                    <div class="login-conteiner">
+                        <i class="fa-solid fa-lock login-icon"></i>
+                        <div class="login-input">
+                            <label>Повторіть пароль</label>
+                            <input class="new-password-two" type="password">
+                        </div>
+                    </div>
+                </div>
+                <div class ="login-button">
+                    <button class="register-but-next">Продовжити</button>
+                </div>
             </div>
         </div>
         
@@ -118,6 +153,6 @@
 
     <script src="scripts/ui.js"></script>
     <script src="scripts/products.js"></script>
-    <script src="scripts/cart.js"></script>
+    <script src="scripts/basket.js"></script>
 </body>
 </html>
