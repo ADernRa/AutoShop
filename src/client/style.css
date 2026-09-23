@@ -117,6 +117,15 @@ nav ul li:hover{
     color: #d32f2f;
 }
 
+.card-price-count {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-count{
+    font-size: 18px;
+}
+
 .card-button {
     background-color: #007bff;
     color: white;
@@ -562,4 +571,26 @@ h2 {
 
 .close-btn-register:hover{
     color: #696969;
+}
+
+.card-price{
+    display: flex;
+    gap: 5px
+}
+
+.card-count{
+    display: flex;
+    gap: 5px
+}
+
+.card-price p{
+    margin: 0;
+    display: flex;
+    flex-direction:row;
+}
+
+.card-count p{
+    margin: 0;
+    display: flex;
+    flex-direction:row;
 }

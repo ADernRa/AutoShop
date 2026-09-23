@@ -36,7 +36,10 @@ function get_product(){
             <div class="card-item" data-id="${data[i].id}">
                 <img src="${data[i].image}" alt="Товар" class="card-image">
                 <h3 class="card-title">${data[i].title}</h3>
-                <div class="card-price">${data[i].price} грн.</div>
+                <div class="card-price-count">
+                            <div class="card-price"><p>${data[i].price}</p> грн.</div>
+                            <div class="card-count"><p>${data[i].count}</p> шт.</div>
+                        </div>
                 <button class="card-button">До кошику</button>
             </div>
         `;

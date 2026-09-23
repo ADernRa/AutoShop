@@ -7,14 +7,14 @@ from src.server.models.UserModel import User
 from src.server.schemas.UserSchemas import (UserCreate, UserResponse, Token, UserBase) 
 from src.server.services import (security, auth)
 from src.server.database import engine, get_db
-from src.server.crud.urer_auth_repositoyry import UserAuth
+from src.server.crud.user_auth_repositoyry import UserAuth
 
 auth_router = APIRouter(
     prefix="/api/auth", 
     tags=["auth"]
     )
 
-@auth_router.post("/register", response_model=UserResponse)
+@auth_router.post("/register", response_model=UserResponse, summary="Реєстрація")
 async def register(
     user_data: UserCreate, 
     db: AsyncSession = Depends(get_db)):
@@ -23,7 +23,7 @@ async def register(
     new_user = await repository.user_register(user_data)
     return new_user
 
-@auth_router.post("/login", response_model=Token)
+@auth_router.post("/login", response_model=Token, summary="Авторизація")
 async def login(
     form_data: UserBase, 
     db: AsyncSession = Depends(get_db)):
