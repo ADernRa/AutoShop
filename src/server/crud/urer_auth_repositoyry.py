@@ -16,8 +16,8 @@ class UserAuth:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def user_login(self, form_data: OAuth2PasswordRequestForm):
-        query = select(User).where(User.login == form_data.username)
+    async def user_login(self, form_data: UserBase):
+        query = select(User).where(User.login == form_data.login)
         result = await self.db.execute(query)
         user = result.scalar_one_or_none()
         if not user or not security.verify_password(form_data.password, user.hashed_password):
@@ -28,7 +28,7 @@ class UserAuth:
                 )
             
         access_token = security.create_access_token(data={"sub": user.login})
-        return access_token
+        return access_token, user
 
     async def user_register(self, user_data: UserCreate):
         query = select(User).where(User.login == user_data.login)

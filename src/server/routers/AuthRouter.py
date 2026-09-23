@@ -4,13 +4,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, delete
 
 from src.server.models.UserModel import User
-from src.server.schemas.UserSchemas import (UserCreate, UserResponse, Token) 
+from src.server.schemas.UserSchemas import (UserCreate, UserResponse, Token, UserBase) 
 from src.server.services import (security, auth)
 from src.server.database import engine, get_db
 from src.server.crud.urer_auth_repositoyry import UserAuth
 
 auth_router = APIRouter(
-    prefix="/api/v1/authorization", 
+    prefix="/api/auth", 
     tags=["auth"]
     )
 
@@ -25,9 +25,9 @@ async def register(
 
 @auth_router.post("/login", response_model=Token)
 async def login(
-    form_data: OAuth2PasswordRequestForm = Depends(), 
+    form_data: UserBase, 
     db: AsyncSession = Depends(get_db)):
 
     repository = UserAuth(db)
-    access_token = await repository.user_login(form_data)
-    return {"access_token": access_token, "token_type": "bearer"}
+    access_token, user = await repository.user_login(form_data)
+    return {"access_token": access_token, "token_type": "bearer", "user": user}
