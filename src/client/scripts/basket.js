@@ -23,8 +23,12 @@ itemsContainer.addEventListener('click', (event) => {
             const count_basket = existingItem.querySelector('.card-count p')
             const count = parseInt(count_basket.textContent)
 
+            const price_basket = existingItem.querySelector('.card-price p')
+            const price = parseInt(price_basket.textContent)
+
             if (count < productData.count){
                 count_basket.textContent = count + 1;
+                price_basket.textContent = price / count * (count + 1);
             } else {
                 alert("Товар закінчився")
             }
@@ -54,7 +58,17 @@ itemsContainer.addEventListener('click', (event) => {
 cart_content.addEventListener('click', (event) => {
     if (event.target.classList.contains('back-button')) {
         const cartProduct = event.target.closest('.cart-product');
-        if (cartProduct) {
+        
+        const count_basket = cartProduct.querySelector('.card-count p')
+        const count = parseInt(count_basket.textContent)
+
+        const price_basket = cartProduct.querySelector('.card-price p')
+        const price = parseInt(price_basket.textContent)
+
+        if (count > 1) {
+            count_basket.textContent = count - 1;
+            price_basket.textContent = price / count * (count - 1);
+        } else {
             cartProduct.remove(); 
         }
         
