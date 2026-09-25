@@ -34,6 +34,13 @@ const open_btn_register = document.querySelector('.register-but');
 const reg_win = document.querySelector('.register-window');
 const log_win = document.querySelector('.login-window');
 
+function Change(){
+    const log = document.querySelector('.log-com')
+    const com = document.querySelector('.pas-com')
+    log.style.borderBottom = 'none';
+    com.style.borderBottom = 'none'; 
+}
+
 function closeLogin(){
     cart_login.classList.remove('open');
     cartOverlay.classList.remove('show');
@@ -44,7 +51,8 @@ function openLogin(e){
     e.preventDefault(); 
     cart_login.classList.add('open');
     cartOverlay.classList.add('show');
-    document.body.style.overflow = ''; 
+    document.body.style.overflow = '';
+    Change();
 }
 
 function openRegister(){
@@ -55,6 +63,13 @@ function openRegister(){
 function closeRegister(){
     reg_win.style.display = 'none';
     log_win.style.display = 'block'
+    const password_conteiner = document.querySelector('.password-conteiner')
+    password_conteiner.style.borderBottom = 'none';
+    Change();
+    const log = document.querySelector('.reg-log label')
+    const log_con = document.querySelector('.reg-con')
+    log.textContent = 'Логін';
+    log_con.style.borderBottom = 'none';
 }
 
 if (close_btn_login){

@@ -23,7 +23,9 @@ class UserAuth:
         if not user or not security.verify_password(form_data.password, user.hashed_password):
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Incorrect username or password",
+                    detail={
+                        "field": "login", 
+                        "message": "Дані введені неправильно"},
                     headers={"WWW-Authenticate": "Bearer"},
                 )
             
@@ -35,7 +37,10 @@ class UserAuth:
         result = await self.db.execute(query)
         user = result.scalar_one_or_none()
         if user:
-            raise HTTPException(status_code=400, detail="Login already registered")
+            raise HTTPException(status_code=400,
+                detail={
+                    "field": "login", 
+                    "message": "Користувач вже зареэстрованний"})
              
         hashed_pwd = security.get_password_hash(user_data.password)
              
