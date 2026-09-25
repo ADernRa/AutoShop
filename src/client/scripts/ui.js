@@ -64,46 +64,20 @@ function closeRegister(){
     reg_win.style.display = 'none';
     log_win.style.display = 'block'
     const password_conteiner = document.querySelector('.password-conteiner')
+    const confirm_password_conteiner = document.querySelector('.password-conteiner_conf')
     password_conteiner.style.borderBottom = 'none';
+    confirm_password_conteiner.style.borderBottom = 'none';
+
     Change();
+
     const log = document.querySelector('.reg-log label')
     const log_con = document.querySelector('.reg-con')
     log.textContent = 'Логін';
     log_con.style.borderBottom = 'none';
 }
 
-if (close_btn_login){
-    close_btn_login.addEventListener('click', closeLogin);
-}
-
-if (open_btn_login){
-    open_btn_login.addEventListener('click', openLogin);
-}
-
-if (open_btn_register){
-    open_btn_register.addEventListener('click', openRegister);
-}
-
-if (close_btn_register){
-    close_btn_register.addEventListener('click', closeRegister);
-}
-
-function closeOverlay() {
-    if(cartSidebar.classList.contains('open')){
-        closeCart();
-    }
-    if(cart_login.classList.contains('open')){
-        closeLogin()
-        closeRegister()
-    }
-}
-
-if (cartOverlay) {
-    cartOverlay.addEventListener('click', closeOverlay);
-}
-
 const eye_button = document.querySelector('.eye')
-eye_button.addEventListener('click', (event) => {
+function ButEye(){
     const passwor_input = document.querySelector('.password')
     const open_eye = document.querySelector('.open-eye')
     const close_eye = document.querySelector('.close-eye')
@@ -122,4 +96,40 @@ eye_button.addEventListener('click', (event) => {
         close_eye.style.display = 'flex';
         open_eye.style.display = 'none'; 
     }
-});
+};
+
+if (close_btn_login){
+    close_btn_login.addEventListener('click', closeLogin);
+}
+
+if (open_btn_login){
+    open_btn_login.addEventListener('click', openLogin);
+}
+
+if (open_btn_register){
+    open_btn_register.addEventListener('click', openRegister);
+}
+
+if (close_btn_register){
+    close_btn_register.addEventListener('click', closeRegister);
+}
+
+if (eye_button){
+    eye_button.addEventListener('click', ButEye);
+}
+
+function closeOverlay() {
+    if(cartSidebar.classList.contains('open')){
+        closeCart();
+    }
+    if(cart_login.classList.contains('open')){
+        closeLogin()
+        closeRegister()
+    }
+}
+
+if (cartOverlay) {
+    cartOverlay.addEventListener('click', closeOverlay);
+}
+
+

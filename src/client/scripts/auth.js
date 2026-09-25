@@ -8,6 +8,16 @@ function EnterAcc(){
 
     log.style.borderBottom = 'none';
     com.style.borderBottom = 'none';
+    
+    if(!login.value || login.value.includes(' ')){
+        log.style.borderBottom = '4px solid red';
+        return;
+    }
+
+    if(!password.value || password.value.includes(' ')){
+        com.style.borderBottom = '4px solid red';
+        return;
+    }
 
     const UserBase = {
         login: login.value,
@@ -51,52 +61,60 @@ function RegisterAcc(){
     const password = document.querySelector('.new-password')
     const confirm_password = document.querySelector('.new-password-confirm')
 
-    const password_conteiner = document.querySelector('.password-conteiner');
+    const confirm_password_conteiner = document.querySelector('.password-conteiner')
+    const password_conteiner = document.querySelector('.password-conteiner_conf');
     const log = document.querySelector('.reg-log label');
     const log_con = document.querySelector('.reg-con');
 
     password_conteiner.style.borderBottom = '';
     log_con.style.borderBottom = '';
+    confirm_password_conteiner.style.borderBottom='';
     log.textContent = 'Логін';
 
-    if (password.value!=confirm_password.value || !password.value.trim()){
-        password_conteiner.style.borderBottom = '4px solid red';
-    } 
-    else {
-        const UserCreate = {
-            login: login.value,
-            password: password.value
-        }
-
-        fetch('http://127.0.0.1:8000/api/auth/register',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(UserCreate)
-        })
-        .then(response => {
-            return response.json().then(data => {
-                if (!response.ok) {
-                    return Promise.reject(data);
-                }
-                return data;
-            });
-        })
-        .then(data => {
-            alert(data.role)
-        })
-        .catch(error => {
-            if (error.detail?.field === 'login') {
-                log.textContent = 'Логін зайнятий';
-                log_con.style.borderBottom = '4px solid red';
-            }
-            else {
-                alert('Помилка сервера або з\'єднання');
-            }
-        })
+    if(!login.value || login.value.includes(' ')){
+        log_con.style.borderBottom = '4px solid red';
+        return;
     }
+
+    if (!confirm_password.value || !password.value || password.value!=confirm_password.value || password.value.includes(' ')){
+        password_conteiner.style.borderBottom = '4px solid red';
+        confirm_password_conteiner.style.borderBottom = '4px solid red';
+        return;
+    } 
+
+    const UserCreate = {
+        login: login.value,
+        password: password.value
+    }
+    fetch('http://127.0.0.1:8000/api/auth/register',{
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(UserCreate)
+    })
+    .then(response => {
+        return response.json().then(data => {
+            if (!response.ok) {
+                return Promise.reject(data);
+            }
+            return data;
+        });
+    })
+    .then(data => {
+        alert(data.role)
+    })
+    .catch(error => {
+        if (error.detail?.field === 'login') {
+            log.textContent = 'Логін зайнятий';
+            log_con.style.borderBottom = '4px solid red';
+        }
+        else {
+            alert('Помилка сервера або з\'єднання');
+        }
+    })
 }
+
 
 if (register_login_but){
     register_login_but.addEventListener('click', RegisterAcc);
